@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Song from './songs';
 import SongTable from './songTable';
-
+import DeleteSong from './deleteSong';
 
 class App extends Component {
     state = {
@@ -32,15 +32,23 @@ class App extends Component {
         );
     }
 
-
+    async deleteSong(id){
+        let response = axios.delete('http://127.0.0.1:8000/music/'+id+'/');
+        this.setState({
+            songs: response.data
+        });
+    }
+  
     render(){
         console.log("this.state", this.state);
         return(
             <div>
                 <SongTable mapSongs={() => this.mapSongs()}/>
+                <DeleteSong deleteSong={this.deleteSong.bind(this)} />
             </div>
         );
-     }
     }
+}
+
 
 export default App;
