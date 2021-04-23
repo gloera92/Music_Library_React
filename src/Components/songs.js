@@ -1,17 +1,22 @@
 import React from 'react';
 
+
 const Song = (props) => {
-    return (
-        <tbody>
-            <tr>
-                <td>{props.song.id}</td>
+    return (          
+        <tbody> 
+       
+            <tr>                
+                <td>{props.song.id} <button onClick={() => props.deleteSongs(props.song.id)}>delete song </button>  </td>          
                 <td>{props.song.title}</td>
                 <td>{props.song.artist}</td>
                 <td>{props.song.album}</td>
                 <td>{props.song.genre}</td>
                 <td>{props.song.release_date}</td>
-            </tr>
+            </tr>          
+          
+            
         </tbody>
+        
     );
 }
 
