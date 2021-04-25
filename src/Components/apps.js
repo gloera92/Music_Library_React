@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Song from './songs';
 import SongTable from './songTable';
+import AddNewSong from './addSong';
 
 
 class App extends Component {
@@ -45,14 +46,18 @@ class App extends Component {
         console.log(name)
     }
 
+    async addNewSong(song){
+        await axios.post('http://127.0.0.1:8000/music/', song);
+        this.getAllSongs()  
+    }
 
-    
-  
+     
     render(){
         console.log("this.state", this.state);
         return(
             <div>
                 <SongTable songs={this.getAllSongs.bind(this)} song={() => this.getAllSongs()} mapSongs={() => this.mapSongs()} printName={(name) => this.printName(name)} name="george" />
+                <AddNewSong addNewSong={this.addNewSong.bind(this)} />
             </div>
         );
     }
